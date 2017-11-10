@@ -2,9 +2,10 @@ package pokerhand
 
 class PokerHand {
 	private PokerHands myHand
+	PokerHandFactory pokerHandFactory
 
 	PokerHand(String hand) {
-		PokerHandFactory pokerHandFactory = new PokerHandFactory()
+		pokerHandFactory = PokerHandFactory.pokerHandFactorySingleton()
 		myHand = pokerHandFactory.createHand(hand)
 	}
 

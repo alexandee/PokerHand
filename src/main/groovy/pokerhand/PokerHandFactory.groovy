@@ -3,16 +3,19 @@ package pokerhand
 import java.lang.reflect.Constructor
 
 class PokerHandFactory {
-	private List<Class> allPokerHands
+	private static List<Class> allPokerHands = [RoyalFlush.class, StraightFlush.class, Quadra.class, FullHouse.class,
+											   Flush.class, Sequencia.class, Trinca.class, DoisPares.class, UmPar.class]
 
-	PokerHandFactory(){
-		allPokerHands = [RoyalFlush.class, StraightFlush.class, Quadra.class, FullHouse.class,
-						 Flush.class, Sequencia.class, Trinca.class, DoisPares.class, UmPar.class]
+	private static pokerHandFactory
+	private PokerHandFactory(){
+
 	}
 
-	PokerHandFactory(List<Class> allPokerHands){
-		this.allPokerHands = allPokerHands
+	static pokerHandFactorySingleton(){
+		if(!pokerHandFactory)pokerHandFactory = new PokerHandFactory()
+		return pokerHandFactory
 	}
+
 
 	PokerHands createHand(String allCards){
 		PokerHands actualHand = new CartaAlta(allCards)
