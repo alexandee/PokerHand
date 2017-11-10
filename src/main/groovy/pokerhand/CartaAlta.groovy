@@ -16,7 +16,7 @@ class CartaAlta extends PokerHands{
 	@Override
 	int compareWith(Object pokerHand){
 		if(this.class.name <=> pokerHand.class.name){
-			return getHandValue(this.class.name) <=> getHandValue(pokerHand.class.name)
+			return getHandValue(this.toString()) <=> getHandValue(pokerHand.toString())
 		}
 		CartaAlta otherHand = (CartaAlta)pokerHand
 		return compare2HandsValues(handValue, otherHand.handValue)

@@ -41,4 +41,21 @@ class PokerHandTest extends Specification {
 		"7C 8S 9H TH JH" | "JH JD TH TC 4C" | Result.WIN
 		"TS TH TD JH JD" | "JH JD TH TC 4C" | Result.WIN
 	}
+
+	def "Ordenacao PokerHands"() {
+		given:
+			def royalFlush = new PokerHand("AH KH QH JH TH")
+			def flush1 =  new PokerHand("2H 4H 6H 8H TH")
+			def flush2 =  new PokerHand("3H 4H 6H 8H TH")
+			def cartaAlta = new PokerHand("3H 4C 6C 8H TH")
+			def resultadoEsperado = [cartaAlta, flush2, flush1, royalFlush]
+			def resultadoObtido = [flush2, cartaAlta, royalFlush, flush1]
+
+		when:
+			Collections.sort(resultadoObtido, new PokerHandComparator())
+
+		then:
+			resultadoEsperado == resultadoObtido
+
+	}
 }
