@@ -5,15 +5,24 @@ class FullHouse extends PokerHands {
 	private List<Integer> handValue
 	private Integer trinca
 	private Integer par
+	private Hand name
 
 	FullHouse(String hand) {
 		this.hand = getCardsSorted(hand)
 		handValue = getSortedCardsValues(hand)
 		trinca = Trinca.verificaClasse(this.hand)
 		par = UmPar.verificaClasse(this.hand)
+		name = Hand.FullHouse
 	}
 
-	FullHouse() {
+	@Override
+	Hand obterNome() {
+		return name
+	}
+
+	@Override
+	List<String> obterHand() {
+		return hand
 	}
 
 	static Integer verificaClasse(List<String> hand) {
@@ -25,15 +34,12 @@ class FullHouse extends PokerHands {
 
 	@Override
 	int compareWith(Object pokerHand) {
-		if (this.class.name != pokerHand.class.name) {
-			return getHandValue(this.toString()) <=> getHandValue(pokerHand.toString())
-		}
 		FullHouse otherHand = (FullHouse) pokerHand
 		return compare2HandsValues(handValue, otherHand.handValue)
 	}
 
 	@Override
 	String toString() {
-		return "FullHouse"
+		return hand.toString() + " " + name
 	}
 }

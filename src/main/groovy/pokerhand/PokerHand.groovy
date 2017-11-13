@@ -10,11 +10,15 @@ class PokerHand  {
 	}
 
 	int compareWith(PokerHand otherHand){
+		if(myHand.class.name <=> otherHand.getMyHand().class.name){
+			return myHand.obterNome().ordinal() <=> otherHand.getMyHand().obterNome().ordinal()
+		}
 		return myHand.compareWith(otherHand.getMyHand())
 	}
 
 	String toString(){
-		return myHand.toString()
+		return myHand.obterHand()
+		//return myHand.obterNome() + " " + myHand.obterHand()
 	}
 
 	PokerHands getMyHand(){

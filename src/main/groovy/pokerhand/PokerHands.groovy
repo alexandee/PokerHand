@@ -3,8 +3,6 @@ package pokerhand
 abstract class PokerHands {
 	private static final Map<String, Integer> cardValue = ['2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8,
 													'9':9, 'T':10, 'J':11, 'Q':12, 'K':13, 'A':14]
-	private static final Map<String, Integer> handValue = ["RoyalFlush":9, "StraightFlush":8, "Quadra":7, "FullHouse":6,
-														   "Flush":5, "Sequencia":4 , "Trinca":3, "DoisPares":2, "UmPar":1]
 
 	static Integer getCardValor(String card){
 		return cardValue[card[0]]
@@ -38,10 +36,7 @@ abstract class PokerHands {
 		return 0
 	}
 
-	static Integer getHandValue(String name){
-		return handValue[name]
-	}
-
-	abstract String toString()
 	abstract int compareWith(Object pokerHand)
+	abstract Hand obterNome()
+	abstract List<String> obterHand()
 }

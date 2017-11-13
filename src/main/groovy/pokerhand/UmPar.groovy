@@ -4,11 +4,23 @@ class UmPar extends PokerHands{
 	private List<String> hand
 	private List<Integer> handValue
 	private Integer value
+	private Hand name
 
 	UmPar(String hand) {
 		this.hand = getCardsSorted(hand)
 		handValue = getSortedCardsValues(hand)
 		value = verificaClasse(this.hand)
+		name = Hand.UmPar
+	}
+
+	@Override
+	Hand obterNome() {
+		return name
+	}
+
+	@Override
+	List<String> obterHand() {
+		return hand
 	}
 
 	static Integer verificaClasse(List<String> hand) {
@@ -20,9 +32,6 @@ class UmPar extends PokerHands{
 
 	@Override
 	int compareWith(Object pokerHand) {
-		if(this.class.name != pokerHand.class.name){
-			return getHandValue(this.toString()) <=> getHandValue(pokerHand.toString())
-		}
 		UmPar otherHand = (UmPar) pokerHand
 		if(value != otherHand.value)return value <=> otherHand.value
 		return compare2HandsValues(handValue, otherHand.handValue)

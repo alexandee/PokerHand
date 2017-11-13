@@ -3,10 +3,12 @@ package pokerhand
 class StraightFlush extends PokerHands {
 	private List<String> hand
 	private List<Integer> handValue
+	private Hand name
 
 	StraightFlush(String hand) {
 		this.hand = getCardsSorted(hand)
 		handValue = getSortedCardsValues(hand)
+		name = Hand.StraightFlush
 	}
 
 	static Integer verificaClasse(List<String> hand) {
@@ -16,12 +18,18 @@ class StraightFlush extends PokerHands {
 		return 0
 	}
 
+	@Override
+	Hand obterNome() {
+		return name
+	}
+
+	@Override
+	List<String> obterHand() {
+		return hand
+	}
 
 	@Override
 	int compareWith(Object pokerHand) {
-		if (this.class.name != pokerHand.class.name) {
-			return getHandValue(this.toString()) <=> getHandValue(pokerHand.toString())
-		}
 		StraightFlush otherHand = (StraightFlush) pokerHand
 		return compare2HandsValues(handValue, otherHand.handValue)
 	}

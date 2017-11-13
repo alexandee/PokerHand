@@ -3,10 +3,22 @@ package pokerhand
 class RoyalFlush extends PokerHands {
 	private List<String> hand
 	private List<Integer> handValue
+	private Hand name
 
 	RoyalFlush(String hand) {
 		this.hand = getCardsSorted(hand)
 		handValue = getSortedCardsValues(hand)
+		name = Hand.RoyalFlush
+	}
+
+	@Override
+	Hand obterNome() {
+		return name
+	}
+
+	@Override
+	List<String> obterHand() {
+		return hand
 	}
 
 	static Integer verificaClasse(List<String> hand) {
@@ -18,15 +30,12 @@ class RoyalFlush extends PokerHands {
 
 	@Override
 	int compareWith(Object pokerHand) {
-		if (this.class.name != pokerHand.class.name) {
-			return getHandValue(this.toString()) <=> getHandValue(pokerHand.toString())
-		}
 		RoyalFlush otherHand = (RoyalFlush) pokerHand
 		return compare2HandsValues(handValue, otherHand.handValue)
 	}
 
 	@Override
 	String toString() {
-		return "RoyalFlush"
+		return hand.toString() + " " + name
 	}
 }

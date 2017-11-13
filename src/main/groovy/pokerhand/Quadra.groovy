@@ -4,11 +4,23 @@ class Quadra extends PokerHands {
 	private List<String> hand
 	private List<Integer> handValue
 	private Integer valor
+	private Hand name
 
 	Quadra(String hand) {
 		this.hand = getCardsSorted(hand)
 		handValue = getSortedCardsValues(hand)
 		valor = verificaClasse(this.hand)
+		name = Hand.Quadra
+	}
+
+	@Override
+	Hand obterNome() {
+		return name
+	}
+
+	@Override
+	List<String> obterHand() {
+		return hand
 	}
 
 	static Integer verificaClasse(List<String> hand) {
@@ -26,9 +38,6 @@ class Quadra extends PokerHands {
 
 	@Override
 	int compareWith(Object pokerHand) {
-		if (this.class.name != pokerHand.class.name) {
-			return getHandValue(this.toString()) <=> getHandValue(pokerHand.toString())
-		}
 		Quadra otherHand = (Quadra) pokerHand
 		if(valor != otherHand.valor)return valor <=> otherHand.valor
 		return compare2HandsValues(handValue, otherHand.handValue)
@@ -36,6 +45,6 @@ class Quadra extends PokerHands {
 
 	@Override
 	String toString() {
-		return "Quadra"
+		return hand.toString() + " " + name
 	}
 }

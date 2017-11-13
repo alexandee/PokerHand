@@ -45,7 +45,7 @@ class PokerHandTest extends Specification {
 	def "Ordenacao PokerHands"() {
 		given:
 			def royalFlush = new PokerHand("AH KH QH JH TH")
-			def flush1 =  new PokerHand("2H 4H 6H 8H TH")
+			def flush1 =  new PokerHand("AH 4H 6H 8H TH")
 			def flush2 =  new PokerHand("3H 4H 6H 8H TH")
 			def cartaAlta = new PokerHand("3H 4C 6C 8H TH")
 			def resultadoEsperado = [cartaAlta, flush2, flush1, royalFlush]

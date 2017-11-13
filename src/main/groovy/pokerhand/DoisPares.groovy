@@ -4,11 +4,23 @@ class DoisPares extends PokerHands {
 	private List<String> hand
 	private List<Integer> handValue
 	private List<Integer> pares
+	private Hand name
 
 	DoisPares(String hand) {
 		this.hand = getCardsSorted(hand)
 		handValue = getSortedCardsValues(hand)
 		pares = valorPares(this.hand)
+		name = Hand.DoisPares
+	}
+
+	@Override
+	Hand obterNome() {
+		return name
+	}
+
+	@Override
+	List<String> obterHand() {
+		return hand
 	}
 
 	static List<Integer> valorPares(List<String> hand){
@@ -40,9 +52,6 @@ class DoisPares extends PokerHands {
 
 	@Override
 	int compareWith(Object pokerHand) {
-		if(this.class.name != pokerHand.class.name){
-			return getHandValue(this.toString()) <=> getHandValue(pokerHand.toString())
-		}
 		DoisPares otherHand = (DoisPares) pokerHand
 		if(pares[0] != otherHand.pares[0])return pares[0] <=> otherHand.pares[0]
 		if(pares[1] != otherHand.pares[1])return pares[1] <=> otherHand.pares[1]
@@ -51,6 +60,6 @@ class DoisPares extends PokerHands {
 
 	@Override
 	String toString() {
-		return "DoisPares"
+		return hand.toString() + " " + name
 	}
 }
